@@ -1,0 +1,20 @@
+= @actor.thing.name
+= ":"
+= @actor.name
+%br
+= link_to "Turn On", executions_path(params: { execution: {actor_id: @actor.id, action: 'on'} }) , method: :post
+%br
+= link_to "Turn Off", executions_path(params: { execution: {actor_id: @actor.id, action: 'off'} }) , method: :post
+%br
+%br
+Schedule (
+= link_to "add", new_schedule_path(params: { schedule: {actor_id: @actor.id} })
+):
+%br
+- @actor.schedules.order(:execute_at).each do |schedule|
+  .schedule
+    = schedule.execute_at.strftime("%H:%M")
+    = schedule.action
+    = link_to "edit", edit_schedule_path(schedule)
+    = link_to "delete", schedule_path(schedule), method: :delete
+

@@ -1,0 +1,6 @@
+.actors
+  - @actors.each do |actor|
+    %span
+      = link_to actor.name, actor
+      = link_to "On", on_actor_path(actor)
+      = link_to "Off", off_actor_path(actor)
