@@ -1,20 +1,24 @@
-= @actor.thing.name
-= ":"
-= @actor.name
-%br
-= link_to "Turn On", executions_path(params: { execution: {actor_id: @actor.id, action: 'on'} }) , method: :post
-%br
-= link_to "Turn Off", executions_path(params: { execution: {actor_id: @actor.id, action: 'off'} }) , method: :post
-%br
-%br
-Schedule (
-= link_to "add", new_schedule_path(params: { schedule: {actor_id: @actor.id} })
-):
-%br
-- @actor.schedules.order(:execute_at).each do |schedule|
-  .schedule
-    = schedule.execute_at.strftime("%H:%M")
-    = schedule.action
-    = link_to "edit", edit_schedule_path(schedule)
-    = link_to "delete", schedule_path(schedule), method: :delete
+%h5
+  = "#{@actor.thing.name}: #{@actor.name}"
+  - if @actor.specific.state
+    (on)
+  -  else
+    (off)
+= link_to "On", executions_path(params: { execution: {actor_id: @actor.id, action: 'on'} }) , method: :post, class: 'waves-effects waves-light btn-small'
+= link_to "Off", executions_path(params: { execution: {actor_id: @actor.id, action: 'off'} }) , method: :post, class: 'waves-effects waves-light btn-small'
+
+%ul.collection
+  %li.collection-header.collection-item
+    %h5
+      Schedule
+      = link_to icon('add'), new_schedule_path(params: { schedule: {actor_id: @actor.id} }), class: 'btn-floating waves-effect waves-light red right'
+  - @actor.schedules.order(:execute_at).each do |schedule|
+    %li.collection-item
+      .schedule
+        .schedule--execute-at= schedule.execute_at.strftime("%H:%M")
+        .schedule--action= schedule.action
+        .schedule--actions
+          = link_to icon('build'), edit_schedule_path(schedule)
+          = link_to icon('delete'), schedule_path(schedule), method: :delete
+
 

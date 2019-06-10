@@ -12,4 +12,12 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require jquery
+//= require jquery_ujs
+//= require materialize-css/dist/js/materialize
 //= require_tree .
+
+
+$(document).ready(function(){
+    $('.sidenav').sidenav();
+});

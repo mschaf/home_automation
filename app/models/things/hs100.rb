@@ -1,11 +1,41 @@
 class HS100 < Thing
 
   def turn_on
-    system "pyhs100 --ip #{address} --plug on"
+    if system "pyhs100 --ip #{address} --plug on"
+      update_last_seen
+      true
+    else
+      remove_last_seen
+      false
+    end
   end
 
   def turn_off
-    system "pyhs100 --ip #{address} --plug off"
+    if system "pyhs100 --ip #{address} --plug off"
+      update_last_seen
+      true
+    else
+      remove_last_seen
+      false
+    end
+  end
+
+  def query_sensors
+    result = JSON.parse(`pyhs100 --ip 192.168.1.61 --plug`.split("\n").last.gsub("'", '"'), symbolize_names: true)
+    if($?.success?)
+      update_last_seen
+      power_sensor = sensors.find_by(unit: "W")
+      power_sensor&.sensor_values.create!(value: result[:power_mw] / 1000.0)
+
+      total_power_sensor = sensors.find_by(unit: "Wh")
+      total_power_sensor&.sensor_values.create!(value: result[:total_wh])
+
+      true
+    else
+      remove_last_seen
+      false
+    end
+
   end
 
 end

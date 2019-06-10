@@ -1,0 +1,45 @@
+!!! 5
+%html
+  %head
+    %title
+      HomeAutomation
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag    'application', media: 'all'
+    %link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    = javascript_include_tag 'application'
+
+    %meta(name="viewport" content="width=device-width, initial-scale=1")
+
+  %body
+    .layout
+      .layout--head
+
+        .navbar-fixed.navbar
+          %nav
+            %a.sidenav-trigger(href="#" data-target="slide-out")
+              %i.material-icons.large
+                menu
+            .navbar--logo.brand-logo.left
+              .no-mobile
+                HomeAutomation -
+              Things
+
+      .layout--side
+
+
+        %ul#slide-out.sidenav.sidenav-fixed.layout--sidenav
+
+          %li= link_to "Things", things_path
+
+      .layout--main
+        .content
+          = yield
+
+
+    -#- flash.each do |key, value|
+    -#  .flashes
+    -#    = value
+
+

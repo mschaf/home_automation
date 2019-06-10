@@ -1,0 +1,15 @@
+.actor
+  - case actor.specific.class
+    - when Actor::Plug.class
+      .actor--name
+        = link_to actor.name, actor
+      .actor--state
+        - if actor.specific.state
+          %span.badge.green
+            on
+        - else
+          %span.badge.red
+            off
+      .actor--actions
+        = link_to "On", executions_path(params: { execution: {actor_id: actor.id, action: 'on'} }) , method: :post, class: 'waves-effects waves-light btn'
+        = link_to "Off", executions_path(params: { execution: {actor_id: actor.id, action: 'off'} }) , method: :post, class: 'waves-effects waves-light btn'

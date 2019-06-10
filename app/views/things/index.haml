@@ -1,0 +1,27 @@
+%ul.collection
+  - @things.each do |thing|
+    %li.collection-item
+      %h5
+        = thing.name
+        %small
+          %small.grey-text
+            - if thing.last_seen
+              %i.material-icons.green-text
+                brightness_1
+              = "(last seen #{distance_of_time_in_words(thing.last_seen, Time.now)} ago)"
+            - else
+              %i.material-icons.red-text
+                brightness_1
+
+      .collection
+        - thing.actors.each do |actor|
+          .collection-item
+            = render 'actors/actor', actor: actor
+        - thing.sensors.each do |sensor|
+          .collection-item
+            = render 'sensors/sensor', sensor: sensor
+
+
+
+
+

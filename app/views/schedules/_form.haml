@@ -1,32 +1,43 @@
-= form_for @schedule do |f|
-  = f.label :execute_at
-  = f.time_select :execute_at
-  %br
-  = f.label :execute_on_monday, "Monday"
-  = f.check_box :execute_on_monday
-  %br
-  = f.label :execute_on_tuesday, "Tuesday"
-  = f.check_box :execute_on_tuesday
-  %br
-  = f.label :execute_on_wednesday, "Wednesday"
-  = f.check_box :execute_on_wednesday
-  %br
-  = f.label :execute_on_thursday, "Thursday"
-  = f.check_box :execute_on_thursday
-  %br
-  = f.label :execute_on_friday, "Friday"
-  = f.check_box :execute_on_friday
-  %br
-  = f.label :execute_on_saturday, "Saturday"
-  = f.check_box :execute_on_saturday
-  %br
-  = f.label :execute_on_sunday, "Sunday"
-  = f.check_box :execute_on_sunday
-  %br
-  %br
-  = f.label :action
-  = f.select :action, @schedule.actor.specific.actions
-  %br
-  %br
-  = f.hidden_field :actor_id
-  = f.submit
+.form
+  = form_for @schedule do |f|
+
+
+    %label(for="first_name")
+      First Name
+    %input(placeholder="Placeholder" id="first_name" type="text")
+
+
+
+
+    %p.form--group
+      = f.label :execute_at
+      = f.time_select :execute_at
+    %p.form--group
+      = f.label :execute_on_monday
+      = f.check_box :execute_on_monday
+    %br
+    = f.label :execute_on_tuesday, "Tuesday"
+    = f.check_box :execute_on_tuesday
+    %br
+    = f.label :execute_on_wednesday, "Wednesday"
+    = f.check_box :execute_on_wednesday
+    %br
+    = f.label :execute_on_thursday, "Thursday"
+    = f.check_box :execute_on_thursday
+    %br
+    = f.label :execute_on_friday, "Friday"
+    = f.check_box :execute_on_friday
+    %br
+    = f.label :execute_on_saturday, "Saturday"
+    = f.check_box :execute_on_saturday
+    %br
+    = f.label :execute_on_sunday, "Sunday"
+    = f.check_box :execute_on_sunday
+    %br
+    %br
+    = f.label :action
+    = f.select :action, @schedule.actor.specific.actions
+    %br
+    %br
+    = f.hidden_field :actor_id
+    = f.submit

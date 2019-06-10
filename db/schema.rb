@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_08_125829) do
+ActiveRecord::Schema.define(version: 2019_06_10_183037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,20 @@ ActiveRecord::Schema.define(version: 2019_06_08_125829) do
     t.boolean "execute_on_friday"
     t.boolean "execute_on_saturday"
     t.boolean "execute_on_sunday"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sensor_values", force: :cascade do |t|
+    t.integer "sensor_id"
+    t.float "value"
+    t.datetime "created_at", null: false
+  end
+
+  create_table "sensors", force: :cascade do |t|
+    t.integer "thing_id"
+    t.string "name"
+    t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

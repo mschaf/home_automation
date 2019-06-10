@@ -1,0 +1,19 @@
+.layout
+
+  font-size: 16px
+
+  .layout--head, .layout--main
+    padding-left: 0
+
+  @media only screen and (min-width : 992px)
+    .layout--sidenav
+      z-index: 2
+      padding-top: 70px
+    .layout--head
+      z-index: 3
+    .layout--main
+      z-index: 1
+      padding-left: 300px
+
+
+

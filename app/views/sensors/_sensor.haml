@@ -1,0 +1,7 @@
+.sensor
+  .sensor--name
+    = sensor.name
+  .sensor--value
+    = sensor.sensor_values.last&.value || 'no value'
+  .sensor--unit
+    = sensor.unit

@@ -1,5 +1,7 @@
 {
   "name": "home_automation",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "materialize-css": "^1.0.0"
+  }
 }
