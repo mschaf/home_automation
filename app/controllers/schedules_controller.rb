@@ -5,7 +5,6 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    byebug
     build_schedule
     if save_schedule
       redirect_to @schedule.actor

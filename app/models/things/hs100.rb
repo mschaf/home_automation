@@ -25,10 +25,10 @@ class HS100 < Thing
     if($?.success?)
       update_last_seen
       power_sensor = sensors.find_by(unit: "W")
-      power_sensor&.sensor_values.create!(value: result[:power_mw] / 1000.0)
+      power_sensor&.save_reading(result[:power_mw] / 1000.0)
 
       total_power_sensor = sensors.find_by(unit: "Wh")
-      total_power_sensor&.sensor_values.create!(value: result[:total_wh])
+      total_power_sensor&.save_reading(result[:total_wh])
 
       true
     else

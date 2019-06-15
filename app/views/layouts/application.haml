@@ -7,7 +7,6 @@
     = csp_meta_tag
 
     = stylesheet_link_tag    'application', media: 'all'
-    %link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
     = javascript_include_tag 'application'
 
     %meta(name="viewport" content="width=device-width, initial-scale=1")
@@ -15,27 +14,23 @@
   %body
     .layout
       .layout--head
+        .navbar
 
-        .navbar-fixed.navbar
-          %nav
-            %a.sidenav-trigger(href="#" data-target="slide-out")
-              %i.material-icons.large
-                menu
-            .navbar--logo.brand-logo.left
-              .no-mobile
-                HomeAutomation -
-              Things
+          %a.layout--toggle.navbar--sidebar-toggle(href='#')
+            = fa_icon 'bars'
 
       .layout--side
+        .sidebar
+          %ul
+            %li
+              = link_to "Things", things_path, class: 'sidebar--item', 'up-target' => '.layout--content'
 
 
-        %ul#slide-out.sidenav.sidenav-fixed.layout--sidenav
-
-          %li= link_to "Things", things_path
-
+      .layout--cover
       .layout--main
-        .content
+        .layout--content
           = yield
+      .layout--dummy
 
 
     -#- flash.each do |key, value|

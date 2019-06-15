@@ -2,6 +2,6 @@
   "name": "home_automation",
   "private": true,
   "dependencies": {
-    "materialize-css": "^1.0.0"
+    "clockpicker": "^0.0.7"
   }
 }

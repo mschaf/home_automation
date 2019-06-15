@@ -11,6 +11,13 @@ Rails.application.routes.draw do
   resources :schedules
 
   resources :executions, only: [:create]
+
   resources :things, only: [:index, :show]
+
+  resources :sensors, only: [:show] do
+    resources :sensor_values
+  end
+
+  resources :sensor_upload, only: [:create]
 
 end

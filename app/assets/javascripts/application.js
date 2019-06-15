@@ -12,12 +12,32 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require jquery
-//= require jquery_ujs
-//= require materialize-css/dist/js/materialize
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require unpoly
+//= require unpoly-bootstrap3
+//= require clockpicker/dist/bootstrap-clockpicker
+//= require Chart.min
+//= require_self
 //= require_tree .
 
 
-$(document).ready(function(){
-    $('.sidenav').sidenav();
+// Define $.unobtrusive() to register new element activation callbacks
+$.unobtrusive = function(callback) {
+    $(document).on('activate-unobtrusive-javascript', function(event, root) {
+        $(root).each(callback);
+    });
+}
+
+// Define a function for all jQuery collections to manually run activation callbacks on that element
+$.fn.activateUnobtrusiveJavascript = function() {
+    this.each(function() {
+        $(document).trigger('activate-unobtrusive-javascript', this);
+    });
+}
+
+// Activate the entire DOM on initial page load
+$(function() {
+    $(document).activateUnobtrusiveJavascript();
 });

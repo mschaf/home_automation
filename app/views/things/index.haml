@@ -1,27 +1,14 @@
-%ul.collection
-  - @things.each do |thing|
-    %li.collection-item
-      %h5
+- @things.each do |thing|
+  .card
+    .card-body
+      %h5.card-title.no-margin{id: "thing_#{thing.id}_name", 'up-hungry' => ''}
         = thing.name
-        %small
-          %small.grey-text
-            - if thing.last_seen
-              %i.material-icons.green-text
-                brightness_1
-              = "(last seen #{distance_of_time_in_words(thing.last_seen, Time.now)} ago)"
-            - else
-              %i.material-icons.red-text
-                brightness_1
-
-      .collection
-        - thing.actors.each do |actor|
-          .collection-item
-            = render 'actors/actor', actor: actor
-        - thing.sensors.each do |sensor|
-          .collection-item
-            = render 'sensors/sensor', sensor: sensor
-
-
-
-
-
+        = online_indicator thing.last_seen
+    %ul.list-group.list-group-flush
+      - thing.actors.order(:name).each do |actor|
+        %li.list-group-item
+          = render 'actors/actor', actor: actor
+      - thing.sensors.order(:name).each do |sensor|
+        %li.list-group-item
+          = render 'sensors/sensor', sensor: sensor
+  %br

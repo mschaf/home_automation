@@ -1,15 +1,10 @@
-.actor
+.line
   - case actor.specific.class
     - when Actor::Plug.class
-      .actor--name
-        = link_to actor.name, actor
-      .actor--state
-        - if actor.specific.state
-          %span.badge.green
-            on
-        - else
-          %span.badge.red
-            off
-      .actor--actions
-        = link_to "On", executions_path(params: { execution: {actor_id: actor.id, action: 'on'} }) , method: :post, class: 'waves-effects waves-light btn'
-        = link_to "Off", executions_path(params: { execution: {actor_id: actor.id, action: 'off'} }) , method: :post, class: 'waves-effects waves-light btn'
+      .line--item.-title
+        = link_to actor.name, actor, 'up-target' => '.layout--content'
+      .line--item{id: "actor_#{actor.id}_state", 'up-hungry' => ''}
+        = switch_state_indicator actor.specific.state
+      .line--item.-right
+        = link_to "On", executions_path(params: { execution: {actor_id: actor.id, action: 'on'} }) , method: :post, class: 'btn btn-primary btn-sm', 'up-target' => '.layout--content'
+        = link_to "Off", executions_path(params: { execution: {actor_id: actor.id, action: 'off'} }) , method: :post, class: 'btn btn-primary btn-sm', 'up-target' => '.layout--content'

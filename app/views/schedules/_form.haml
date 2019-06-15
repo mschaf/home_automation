@@ -1,43 +1,41 @@
 .form
-  = form_for @schedule do |f|
+  = form_for @schedule, html: { 'up-target' => '.layout--content' } do |f|
 
+    .form-group.clockpicker(data-autoclose="true")
+      = f.label :execute_at, "Time"
+      = f.text_field :execute_at, value: f.object.execute_at&.strftime('%H:%M'), class: 'form-control', placeholder: "Time", autocomplete: :off
 
-    %label(for="first_name")
-      First Name
-    %input(placeholder="Placeholder" id="first_name" type="text")
+    .form-group
+      = f.label :action
+      = f.select :action, @schedule.actor.specific.actions, {}, class: 'form-control'
 
+    .form-group.form-check
+      = f.check_box :execute_on_monday, class: 'form-check-input'
+      = f.label :execute_on_monday, 'Monday', class: 'form-check-label'
 
+    .form-group.form-check
+      = f.check_box :execute_on_tuesday, class: 'form-check-input'
+      = f.label :execute_on_tuesday, 'Tuesday', class: 'form-check-label'
 
+    .form-group.form-check
+      = f.check_box :execute_on_wednesday, class: 'form-check-input'
+      = f.label :execute_on_wednesday, 'Wednesday', class: 'form-check-label'
 
-    %p.form--group
-      = f.label :execute_at
-      = f.time_select :execute_at
-    %p.form--group
-      = f.label :execute_on_monday
-      = f.check_box :execute_on_monday
-    %br
-    = f.label :execute_on_tuesday, "Tuesday"
-    = f.check_box :execute_on_tuesday
-    %br
-    = f.label :execute_on_wednesday, "Wednesday"
-    = f.check_box :execute_on_wednesday
-    %br
-    = f.label :execute_on_thursday, "Thursday"
-    = f.check_box :execute_on_thursday
-    %br
-    = f.label :execute_on_friday, "Friday"
-    = f.check_box :execute_on_friday
-    %br
-    = f.label :execute_on_saturday, "Saturday"
-    = f.check_box :execute_on_saturday
-    %br
-    = f.label :execute_on_sunday, "Sunday"
-    = f.check_box :execute_on_sunday
-    %br
-    %br
-    = f.label :action
-    = f.select :action, @schedule.actor.specific.actions
-    %br
-    %br
+    .form-group.form-check
+      = f.check_box :execute_on_thursday, class: 'form-check-input'
+      = f.label :execute_on_thursday, 'Thursday', class: 'form-check-label'
+
+    .form-group.form-check
+      = f.check_box :execute_on_friday, class: 'form-check-input'
+      = f.label :execute_on_friday, 'Friday', class: 'form-check-label'
+
+    .form-group.form-check
+      = f.check_box :execute_on_saturday, class: 'form-check-input'
+      = f.label :execute_on_saturday, 'Saturday', class: 'form-check-label'
+
+    .form-group.form-check
+      = f.check_box :execute_on_sunday, class: 'form-check-input'
+      = f.label :execute_on_sunday, 'Sunday', class: 'form-check-label'
+
     = f.hidden_field :actor_id
-    = f.submit
+    = f.submit class: 'btn btn-success'

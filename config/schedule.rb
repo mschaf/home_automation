@@ -25,4 +25,5 @@ env :PATH, ENV['PATH']
 
 every 1.minutes do
   runner "Schedule.execute_schedules", environment: :development
+  runner "Thing.query_sensors", environment: :development
 end

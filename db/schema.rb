@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_10_183037) do
+ActiveRecord::Schema.define(version: 2019_06_11_190705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_06_10_183037) do
     t.integer "thing_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "identifier"
     t.index ["actable_type", "actable_id"], name: "index_actors_on_actable_type_and_actable_id"
   end
 
@@ -57,6 +58,8 @@ ActiveRecord::Schema.define(version: 2019_06_10_183037) do
     t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "current_value"
+    t.string "identifier"
   end
 
   create_table "things", force: :cascade do |t|
@@ -64,6 +67,7 @@ ActiveRecord::Schema.define(version: 2019_06_10_183037) do
     t.string "name"
     t.string "address"
     t.datetime "last_seen"
+    t.string "identifier"
   end
 
 end

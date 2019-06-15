@@ -11,7 +11,7 @@ class ThingsController < ApplicationController
   private
 
   def load_things
-    @things ||= thing_scope.to_a
+    @things ||= thing_scope.order(:name).to_a
   end
 
   def load_thing

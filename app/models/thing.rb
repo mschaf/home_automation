@@ -15,4 +15,10 @@ class Thing < ApplicationRecord
     update!(last_seen: nil)
   end
 
+  def self.query_sensors
+    Thing.all.each do |thing|
+      thing.query_sensors
+    end
+  end
+
 end

@@ -1,0 +1,19 @@
+%h4
+  = "#{@sensor.thing.name}: #{@sensor.name}"
+  = online_indicator @sensor.thing.last_seen
+
+%div{id: "sensor_#{@sensor.id}_online", 'up-hungry' => ''}
+
+
+.sensor-value{id: "sensor_#{@sensor.id}_value", 'up-hungry' => ''}
+  Current Value:
+  = @sensor.current_value&.round(1) || 'no value'
+  = @sensor.unit
+
+.line-chart{ 'data-url': sensor_sensor_values_path(@sensor), 'data-label': @sensor.name }
+  %canvas.line-chart--chart
+  .btn-group.line-chart--interval-buttons{ role: 'group' }
+    %button.btn.btn-secondary#select_hour{ type: 'button' } Hour
+    %button.btn.btn-primary#select_day{ type: 'button' } Day
+    %button.btn.btn-secondary#select_week{ type: 'button' } Week
+    %button.btn.btn-secondary#select_month{ type: 'button' } Month

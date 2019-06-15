@@ -1,24 +1,34 @@
-%h5
+%h4{id: "actor_headline", 'up-hungry' => ''}
   = "#{@actor.thing.name}: #{@actor.name}"
-  - if @actor.specific.state
-    (on)
-  -  else
-    (off)
-= link_to "On", executions_path(params: { execution: {actor_id: @actor.id, action: 'on'} }) , method: :post, class: 'waves-effects waves-light btn-small'
-= link_to "Off", executions_path(params: { execution: {actor_id: @actor.id, action: 'off'} }) , method: :post, class: 'waves-effects waves-light btn-small'
+  = switch_state_indicator @actor.specific.state
 
-%ul.collection
-  %li.collection-header.collection-item
-    %h5
-      Schedule
-      = link_to icon('add'), new_schedule_path(params: { schedule: {actor_id: @actor.id} }), class: 'btn-floating waves-effect waves-light red right'
+= link_to "On", executions_path(params: { execution: {actor_id: @actor.id, action: 'on'} }) , method: :post, class: 'btn btn-primary', 'up-target' => '.layout--content'
+= link_to "Off", executions_path(params: { execution: {actor_id: @actor.id, action: 'off'} }) , method: :post, class: 'btn btn-primary', 'up-target' => '.layout--content'
+
+%br
+%br
+.group-list
+  .list-group-item
+    .line
+      .line--item.-title
+        Schedule
+      .line--item.-right
+        = link_to icon('add'), new_schedule_path(params: { schedule: {actor_id: @actor.id} }), class: 'btn btn-success btn-sm', 'up-target' => '.layout--content'
   - @actor.schedules.order(:execute_at).each do |schedule|
-    %li.collection-item
-      .schedule
-        .schedule--execute-at= schedule.execute_at.strftime("%H:%M")
-        .schedule--action= schedule.action
-        .schedule--actions
-          = link_to icon('build'), edit_schedule_path(schedule)
-          = link_to icon('delete'), schedule_path(schedule), method: :delete
+    .list-group-item
+      .line
+        .line--item.-title= schedule.execute_at.strftime("%H:%M")
+        .line--item
+          - case schedule.action
+            - when 'on'
+              %span.badge.badge-success on
+            - when 'off'
+              %span.badge.badge-danger off
+            - else
+              %span.badge.badge-primary= schedule.action
+
+        .line--item.-right
+          = link_to 'edit', edit_schedule_path(schedule), class: 'btn btn-primary btn-sm', 'up-target' => '.layout--content'
+          = link_to 'delete', schedule_path(schedule), method: :delete, class: 'btn btn-primary btn-sm', 'up-target' => '.layout--content'
 
 
