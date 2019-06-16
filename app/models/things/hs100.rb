@@ -1,7 +1,7 @@
 class HS100 < Thing
 
   def turn_on
-    if system "pyhs100 --ip #{address} --plug on"
+    if system "LC_ALL=C.UTF-8 LANG=C.UTF-8 pyhs100 --ip #{address} --plug on"
       update_last_seen
       true
     else
@@ -11,7 +11,7 @@ class HS100 < Thing
   end
 
   def turn_off
-    if system "pyhs100 --ip #{address} --plug off"
+    if system "LC_ALL=C.UTF-8 LANG=C.UTF-8 pyhs100 --ip #{address} --plug off"
       update_last_seen
       true
     else
@@ -21,7 +21,7 @@ class HS100 < Thing
   end
 
   def query_sensors
-    result = JSON.parse(`pyhs100 --ip 192.168.1.61 --plug`.split("\n").last.gsub("'", '"'), symbolize_names: true)
+    result = JSON.parse(`LC_ALL=C.UTF-8 LANG=C.UTF-8 pyhs100 --ip 192.168.1.61 --plug`.split("\n").last.gsub("'", '"'), symbolize_names: true)
     if($?.success?)
       update_last_seen
       power_sensor = sensors.find_by(unit: "W")
