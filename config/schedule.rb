@@ -20,10 +20,10 @@
 # Learn more: http://github.com/javan/whenever
 
 
-set :output, "/home/martin/cron.log"
+set :environment, :development
 env :PATH, ENV['PATH']
 
 every 1.minutes do
-  runner "Schedule.execute_schedules", environment: :development
-  runner "Thing.query_sensors", environment: :development
+  runner "Schedule.execute_schedules"
+  runner "Thing.query_sensors"
 end

@@ -9,3 +9,4 @@ set :use_sudo, false
 set :linked_files, ['config/master.key', 'config/database.yml']
 set :rails_env, "production"
 set :keep_releases, 5
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
