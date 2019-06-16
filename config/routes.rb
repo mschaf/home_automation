@@ -20,4 +20,6 @@ Rails.application.routes.draw do
 
   resources :sensor_upload, only: [:create]
 
+  root to: redirect('/things'), via: :all
+
 end
