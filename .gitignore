@@ -42,3 +42,5 @@ public/stylesheets/*.css
 /public/system
 
 db/schema.rb
+
+config/database.yml
