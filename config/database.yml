@@ -82,4 +82,10 @@ production:
   <<: *default
   database: home_automation_production
   username: home_automation
-  password: <%= ENV['HOME_AUTOMATION_DATABASE_PASSWORD'] %>
+  password:  <%= Rails.application.credentials.dig(:db_password) %>
+
+staging:
+  <<: *default
+  database: home_automation_staging
+  username: home_automation
+  password:  <%= Rails.application.credentials.dig(:db_password) %>

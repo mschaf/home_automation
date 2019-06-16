@@ -67,6 +67,10 @@ group :development do
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rack-livereload'
   gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-passenger'
+  gem 'capistrano-yarn'
 end
 
 

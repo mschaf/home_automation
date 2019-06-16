@@ -25,3 +25,20 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+
+capybara-*.html
+rerun.txt
+
+.DS_Store
+
+public/javascripts/all*
+public/stylesheets/all*
+public/stylesheets/*.css
+
+.project
+.idea
+
+/public/system
+
+db/schema.rb
