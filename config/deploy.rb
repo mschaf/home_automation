@@ -10,3 +10,15 @@ set :linked_files, ['config/master.key', 'config/database.yml']
 set :rails_env, "production"
 set :keep_releases, 5
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
+
+namespace :deploy do
+  after :restart, :restart_passenger do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      within release_path do
+        execute :touch, 'tmp/restart.txt'
+      end
+    end
+  end
+  after :finishing, 'deploy:restart_passenger'
+end
