@@ -17,7 +17,9 @@ up.compiler('.line-chart', function (line_chart) {
                 borderColor: 'rgba(0,64,255,0.47)'
             }]
         },
-        options: {}
+        options: {
+            spanGaps: true
+        }
     });
 
     function updateChart(url, chart){
