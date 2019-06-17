@@ -4,6 +4,8 @@ class Execution < ActiveType::Object
   attribute :action, :string
   attribute :parameters, :string
 
+  validates :actor_id, :action, presence: true
+
   belongs_to :actor
 
   def save

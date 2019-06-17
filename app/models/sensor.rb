@@ -4,6 +4,8 @@ class Sensor < ApplicationRecord
 
   has_many :sensor_values
 
+  validates :name, :unit, :thing_id, presence: true
+
   def save_reading(value)
 
       update!(current_value: value)

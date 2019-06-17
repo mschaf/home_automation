@@ -1,5 +1,7 @@
 class Schedule < ApplicationRecord
 
+  validates :execute_at, :action, presence: true
+
   belongs_to :actor
   has_defaults execute_on_monday: true,
                execute_on_tuesday: true,

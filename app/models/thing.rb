@@ -3,6 +3,9 @@ class Thing < ApplicationRecord
   has_many :actors
   has_many :sensors
 
+  validates :name, presence: true
+  validate :address_or_indentifier
+
   def query_sensors
 
   end
@@ -18,6 +21,15 @@ class Thing < ApplicationRecord
   def self.query_sensors
     Thing.all.each do |thing|
       thing.query_sensors
+    end
+  end
+
+  private
+
+  def address_or_indentifier
+    unless address.present? || identifier.present?
+      errors.add :address, 'address or identifier must be present'
+      errors.add :identifier, 'address or identifier must be present'
     end
   end
 
