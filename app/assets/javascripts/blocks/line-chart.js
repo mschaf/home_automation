@@ -5,6 +5,7 @@ up.compiler('.line-chart', function (line_chart) {
     let ctx = $line_chart.find('.line-chart--chart')[0].getContext('2d')
     let dataUrl = $line_chart.attr('data-url')
     let dataLabel = $line_chart.attr('data-label')
+    let scope = 'day'
 
     let lineChart = new Chart(ctx, {
         type: 'line',
@@ -30,6 +31,10 @@ up.compiler('.line-chart', function (line_chart) {
         });
     }
 
+    setInterval(function(){
+        updateChart(dataUrl + '.json?interval=' + scope, lineChart)
+    }, 60000);
+
     function highlightButton (button){
         $line_chart.find('.line-chart--interval-buttons button').each(function (){
             if(button == this){
@@ -42,26 +47,30 @@ up.compiler('.line-chart', function (line_chart) {
         })
     }
 
-    updateChart(dataUrl + '.json?interval=day', lineChart)
+    updateChart(dataUrl + '.json?interval=' + scope, lineChart)
 
     $line_chart.find('#select_hour').click(function (){
         highlightButton(this)
-        updateChart(dataUrl + '.json?interval=hour', lineChart)
+        scope = 'hour'
+        updateChart(dataUrl + '.json?interval=' + scope, lineChart)
     })
 
     $line_chart.find('#select_day').click(function (){
         highlightButton(this)
-        updateChart(dataUrl + '.json?interval=day', lineChart)
+        scope = 'day'
+        updateChart(dataUrl + '.json?interval=' + scope, lineChart)
     })
 
     $line_chart.find('#select_week').click(function (){
         highlightButton(this)
-        updateChart(dataUrl + '.json?interval=week', lineChart)
+        scope = 'week'
+        updateChart(dataUrl + '.json?interval=' + scope, lineChart)
     })
 
     $line_chart.find('#select_month').click(function (){
         highlightButton(this)
-        updateChart(dataUrl + '.json?interval=month', lineChart)
+        scope = 'month'
+        updateChart(dataUrl + '.json?interval=' + scope, lineChart)
     })
 
 

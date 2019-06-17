@@ -12,7 +12,7 @@ class Sensor < ApplicationRecord
 
       last_value = sensor_values.last
 
-      if !last_value || (last_value && sensor_values.last.created_at < 5.minutes.ago)
+      if !last_value || (last_value && sensor_values.last.created_at < 1.minutes.ago)
         sensor_values.create!(value: value)
       end
 
@@ -21,8 +21,8 @@ class Sensor < ApplicationRecord
   def aggregate_by(interval)
     case interval
     when 'hour'
-      now = Time.at(Time.now.to_i - (Time.now.to_i % 5.minutes))
-      result = aggregate_by_interval(now - 1.hour, now, 5.minutes)
+      now = Time.at(Time.now.to_i - (Time.now.to_i % 1.minutes))
+      result = aggregate_by_interval(now - 1.hour, now, 1.minutes)
       {labels: result[:time].map { |time| Time.find_zone("UTC").parse(time).localtime.strftime('%H:%M') },  values: result[:value] }
     when 'day'
       now = Time.at(Time.now.to_i - (Time.now.to_i %  15.minutes))
