@@ -55,6 +55,12 @@ up.compiler('.line-chart', function (line_chart) {
         updateChart(dataUrl + '.json?interval=' + scope, lineChart)
     })
 
+    $line_chart.find('#select_3hour').click(function (){
+        highlightButton(this)
+        scope = '3hour'
+        updateChart(dataUrl + '.json?interval=' + scope, lineChart)
+    })
+
     $line_chart.find('#select_day').click(function (){
         highlightButton(this)
         scope = 'day'

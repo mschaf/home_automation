@@ -24,6 +24,10 @@ class Sensor < ApplicationRecord
       now = Time.at(Time.now.to_i - (Time.now.to_i % 1.minutes))
       result = aggregate_by_interval(now - 1.hour, now, 1.minutes)
       {labels: result[:time].map { |time| Time.find_zone("UTC").parse(time).localtime.strftime('%H:%M') },  values: result[:value] }
+    when '3hour'
+      now = Time.at(Time.now.to_i - (Time.now.to_i % 5.minutes))
+      result = aggregate_by_interval(now - 3.hour, now, 5.minutes)
+      {labels: result[:time].map { |time| Time.find_zone("UTC").parse(time).localtime.strftime('%H:%M') },  values: result[:value] }
     when 'day'
       now = Time.at(Time.now.to_i - (Time.now.to_i %  15.minutes))
       result = aggregate_by_interval(now - 1.day, now, 15.minutes)

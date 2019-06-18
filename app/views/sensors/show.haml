@@ -13,7 +13,8 @@
 .line-chart{ 'data-url': sensor_sensor_values_path(@sensor), 'data-label': @sensor.name }
   %canvas.line-chart--chart
   .btn-group.line-chart--interval-buttons{ role: 'group' }
-    %button.btn.btn-secondary#select_hour{ type: 'button' } Hour
-    %button.btn.btn-primary#select_day{ type: 'button' } Day
-    %button.btn.btn-secondary#select_week{ type: 'button' } Week
-    %button.btn.btn-secondary#select_month{ type: 'button' } Month
+    %button.btn.btn-secondary#select_hour{ type: 'button' } Stunde
+    %button.btn.btn-secondary#select_3hour{ type: 'button' } 3 Stunden
+    %button.btn.btn-primary#select_day{ type: 'button' } Tag
+    %button.btn.btn-secondary#select_week{ type: 'button' } Woche
+    %button.btn.btn-secondary#select_month{ type: 'button' } Monat
