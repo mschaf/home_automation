@@ -13,7 +13,7 @@
       .line--item.-title
         Schedule
       .line--item.-right
-        = link_to icon('add'), new_schedule_path(params: { schedule: {actor_id: @actor.id} }), class: 'btn btn-success btn-sm', 'up-target' => '.layout--content'
+        = link_to 'add', new_schedule_path(params: { schedule: {actor_id: @actor.id} }), class: 'btn btn-success btn-sm', 'up-target' => '.layout--content'
   - @actor.schedules.order(:execute_at).each do |schedule|
     .list-group-item
       .line

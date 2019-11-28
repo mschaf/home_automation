@@ -1,7 +1,25 @@
 {
   "name": "home_automation",
   "private": true,
+  "version": "0.1.0",
   "dependencies": {
-    "clockpicker": "^0.0.7"
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "^4.2.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-sass": "3.4.1",
+    "chart.js": "^2.9.3",
+    "clockpicker": "^0.0.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
+    "jquery-ujs": "^1.2.2",
+    "module": "^1.2.5",
+    "popper.js": "^1.14.7",
+    "unpoly": "^0.61.0",
+    "webpack": "^4.0.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.9.0"
   }
 }

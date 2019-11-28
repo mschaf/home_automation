@@ -3,7 +3,6 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-
 development:
   <<: *default
   database: home_automation_development
@@ -12,8 +11,9 @@ test:
   <<: *default
   database: home_automation_test
 
+
 production:
   <<: *default
   database: home_automation_production
   username: home_automation
-  password: <%= Rails.application.credentials.dig(:db_password) %>
+  password: <%= ENV['HOME_AUTOMATION_DATABASE_PASSWORD'] %>

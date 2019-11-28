@@ -6,8 +6,10 @@
     = csrf_meta_tags
     = csp_meta_tag
 
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
+    = javascript_pack_tag 'application'
+    = stylesheet_pack_tag 'application'
+
+
 
     %link{href: "/favicon/apple-touch-icon.png", rel: "apple-touch-icon", sizes: "180x180"}
     %link{href: "/favicon/favicon-32x32.png", rel: "icon", sizes: "32x32", type: "image/png"}
@@ -27,7 +29,7 @@
         .navbar
 
           %a.layout--toggle.navbar--sidebar-toggle(href='#')
-            = fa_icon 'bars'
+            = icon 'bars'
 
       .layout--side
         .sidebar

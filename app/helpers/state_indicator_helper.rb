@@ -1,5 +1,6 @@
 module StateIndicatorHelper
 
+
   def online_indicator(last_seen)
     content_tag(:div,
                 content_tag(:div,
