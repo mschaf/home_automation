@@ -1,14 +1,21 @@
+= page_header 'Things' do
+  - link_to 'Add Thing', new_thing_url, class: 'button -success', 'up-target' => '.layout--content'
+
 - @things.each do |thing|
-  .card
-    .card-body
-      %h5.card-title.no-margin{id: "thing_#{thing.id}_name", 'up-hungry' => ''}
+  .box
+    .box--title
+      %h5{id: "thing_#{thing.id}_name", 'up-hungry' => ''}
         = thing.name
         = online_indicator thing.last_seen
-    %ul.list-group.list-group-flush
-      - thing.actors.order(:name).each do |actor|
-        %li.list-group-item
-          = render 'actors/actor', actor: actor
-      - thing.sensors.order(:name).each do |sensor|
-        %li.list-group-item
-          = render 'sensors/sensor', sensor: sensor
-  %br
+    .box--actions
+      = link_to 'edit', edit_thing_path(thing), class: 'button -blue -small', 'up-target' => '.layout--content'
+      = link_to 'delete', thing, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button -blue -small', 'up-target' => '.layout--content'
+    .box--content
+      %ul.list
+        - thing.actors.order(:name).each do |actor|
+          %li.list--item
+            = render 'actors/actor', actor: actor
+        - thing.sensors.order(:name).each do |sensor|
+          %li.list--item
+            = render 'sensors/sensor', sensor: sensor
+

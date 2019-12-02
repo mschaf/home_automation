@@ -24,6 +24,10 @@ class Thing < ApplicationRecord
     end
   end
 
+  def to_s
+    name
+  end
+
   private
 
   def address_or_indentifier

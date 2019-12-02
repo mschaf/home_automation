@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :executions, only: [:create]
 
-  resources :things, only: [:index, :show]
+  resources :things
 
   resources :sensors, only: [:show] do
     resources :sensor_values
