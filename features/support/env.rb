@@ -20,5 +20,22 @@ Before '@javascript' do
   page.driver.browser.manage.window.maximize
 end
 
-Capybara.javascript_driver = :selenium_chrome
+
+Capybara.register_driver :headless_chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument '--headless'
+
+  Capybara::Selenium::Driver.new app,browser: :chrome, options: options
+end
+
+if ENV["GITLAB_CI"]
+  Capybara.default_driver = :headless_chrome
+  Capybara.javascript_driver = :headless_chrome
+else
+  Capybara.default_driver = :selenium_chrome
+  Capybara.javascript_driver = :selenium_chrome
+end
+
+
+
 World(FactoryBot::Syntax::Methods)
