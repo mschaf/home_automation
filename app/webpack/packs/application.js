@@ -3,7 +3,7 @@ import jQuery from 'jquery'
 import "clockpicker/dist/bootstrap-clockpicker.css"
 import "clockpicker/dist/bootstrap-clockpicker.js"
 
-import "bootstrap/scss/bootstrap.scss"
+//import "bootstrap/scss/bootstrap.scss"
 import "font-awesome/scss/font-awesome.scss"
 
 require("@rails/ujs").start()
@@ -24,5 +24,8 @@ for(let key of webpackContext.keys()) { webpackContext(key) }
 require.context('../images', true, /\.(?:png|jpg|gif|ico|svg)$/)
 
 // Stylesheets
-require.context('../stylesheets', true, /\.sass$/)
+require('../stylesheets/reset.sass')
+require('../stylesheets/theme.sass')
+require('../stylesheets/shared.sass')
+require.context('../stylesheets/blocks', true, /\.sass$/)
 

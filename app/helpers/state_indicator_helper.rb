@@ -11,9 +11,9 @@ module StateIndicatorHelper
 
   def switch_state_indicator(state)
     if state
-      content_tag(:span, 'on', class: 'badge badge-success')
+      content_tag(:span, 'on', class: 'badge -success')
     else
-      content_tag(:span, 'off', class: 'badge badge-danger')
+      content_tag(:span, 'off', class: 'badge -danger')
     end
   end
 end

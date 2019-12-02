@@ -1,4 +1,4 @@
-
+@import ../definitions
 
 .online-indicator
   display: inline
@@ -8,10 +8,10 @@
     content: "\f111"
 
   &.-online
-    color: green
+    color: $color-success
 
   &.-offline
-    color: red
+    color: $color-danger
 
   .online-indicator--state
     color: gray
