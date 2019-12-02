@@ -20,7 +20,6 @@ gem 'active_type'
 gem 'font-awesome-rails'
 gem 'has_defaults'
 
-
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
@@ -40,7 +39,9 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem 'spreewald'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
