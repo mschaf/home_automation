@@ -1,4 +1,3 @@
-@javascript
 Feature: Things
 
   Scenario: CUD Things

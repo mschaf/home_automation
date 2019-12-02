@@ -1,0 +1,71 @@
+name: Tests
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Setup Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+
+    - name: Setup database.yml
+      run: |
+        cat <<EOT >> config/database.yml
+        default: &default
+          adapter: postgresql
+          encoding: unicode
+          username: postgres
+          pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+          
+        test:
+          <<: *default
+          database: home_automation_test
+        EOT
+        
+    - name: Setup Postgres
+      run: |
+        sudo apt update 
+        sudo apt install postgresql postgresql-server-dev-all
+        sudo sed -i 's/md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
+        sudo sed -i 's/peer/trust/g' /etc/postgresql/*/main/pg_hba.conf
+        sudo service postgresql restart
+
+    - name: Setup Dependencies
+      run: |
+        gem install bundler
+        gem install geordi
+        PATH=$PATH:~/bin
+        geordi chromedriver-update
+
+    - name: Setup Dependencies
+      run: |
+        bundle install --jobs=8 --retry=3 --without development doc production
+        yarn install
+        
+    - name: Setup Test Database
+      run: |
+        bundle exec rails db:create RAILS_ENV=test
+        bundle exec rails db:migrate RAILS_ENV=test
+        
+    - name: Run Features
+      run: |
+        export PATH=$PATH:~/bin
+        geordi cucumber -r 2
+      env:
+        GITLAB_CI: true
+        
+     
+     
