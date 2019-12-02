@@ -23,6 +23,7 @@ jobs:
 
     - name: Setup database.yml
       run: |
+        lshw -short
         cat <<EOT >> config/database.yml
         default: &default
           adapter: postgresql
