@@ -1,5 +1,5 @@
 = page_header 'Things' do
-  - link_to 'Add Thing', new_thing_path, class: 'button -success', 'up-target' => '.layout--content'
+  - link_to 'Add Thing', new_thing_path, as: :thing, class: 'button -success', 'up-target' => '.layout--content'
 
 - @things.each do |thing|
   .box
@@ -9,7 +9,7 @@
         = online_indicator thing.last_seen
     .box--actions
       = link_to 'edit', edit_thing_path(thing), class: 'button -blue -small', 'up-target' => '.layout--content'
-      = link_to 'delete', thing, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button -blue -small', 'up-target' => '.layout--content'
+      = link_to 'delete', thing_path(thing), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button -blue -small', 'up-target' => '.layout--content'
     .box--content
       %ul.list
         - thing.actors.order(:name).each do |actor|

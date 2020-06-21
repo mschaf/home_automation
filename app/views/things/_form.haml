@@ -1,4 +1,4 @@
-= form_for @thing, html: { class: 'form' } do |form|
+= form_for @thing.becomes(Thing), html: { class: 'form' } do |form|
   = string_input form, :name
   = string_input form, :identifier
   = string_input form, :address
