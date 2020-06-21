@@ -1,5 +1,7 @@
 class ExecutionsController < ApplicationController
 
+  skip_before_action :verify_authenticity_token
+
   def create
     build_execution
     if save_execution
