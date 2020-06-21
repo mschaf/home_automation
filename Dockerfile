@@ -27,6 +27,7 @@ RUN apt clean \
 COPY --chown=app:app . /application
 
 ENV RAILS_ENV=production
+ENV SECRET_KEY_BASE=1b696e4dada2258c632b368c67be64375c40f1fc5cba0d6208813097fa0d1d30d3afa8294889b15d2ee0bf03765f62c9d406fb050ab26157b45e18013671337a
 
 RUN mv config/database.yml.production config/database.yml \
     && bundle exec rake webpacker:compile \
