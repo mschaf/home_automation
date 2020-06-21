@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.6.6'
 
 gem 'rails', '~> 6.0.1'
 gem 'pg', '>= 0.18', '< 2.0'
@@ -19,6 +19,7 @@ gem 'factory_bot'
 gem 'active_type'
 gem 'font-awesome-rails'
 gem 'has_defaults'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -44,5 +45,4 @@ group :test do
   gem 'spreewald'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data'

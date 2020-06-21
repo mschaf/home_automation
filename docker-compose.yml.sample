@@ -1,0 +1,49 @@
+version: '3.7'
+services:
+  appserver:
+    build:
+      context: .
+      target: appserver
+    image: home_automation-appserver
+    restart: always
+    ports:
+      - "1280:80"
+    depends_on:
+      - redis
+      - postgres
+      - migrations
+    environment:
+      - POSTGRES_PASSWORD=123456
+      - SECRET_KEY_BASE=<put secret key here>
+
+  worker:
+    build:
+      context: .
+      target: worker
+    image: home_automation-worker
+    restart: always
+    depends_on:
+      - redis
+      - postgres
+      - migrations
+    environment:
+      - POSTGRES_PASSWORD=123456
+
+  redis:
+    image: redis
+    restart: always
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=123456
+
+  migrations:
+    image: home_automation-appserver
+    command: bundle exec rake db:create db:migrate
+    depends_on:
+      - postgres
+    environment:
+      - RAILS_ENV=production
+      - POSTGRES_PASSWORD=123456
