@@ -7,7 +7,8 @@ RUN /pd_build/ruby-2.6.6.sh \
 RUN apt-get clean \
     && apt update \
     && apt upgrade -y \
-    && apt install screen -y
+    && apt install screen python3-pip -y \
+    && pip3 install pyhs100
 
 ADD --chown=app:app Gemfile Gemfile.lock yarn.lock package.json /application/
 
