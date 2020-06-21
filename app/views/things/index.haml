@@ -1,5 +1,5 @@
 = page_header 'Things' do
-  - link_to 'Add Thing', new_thing_url, class: 'button -success', 'up-target' => '.layout--content'
+  - link_to 'Add Thing', new_thing_path, class: 'button -success', 'up-target' => '.layout--content'
 
 - @things.each do |thing|
   .box
